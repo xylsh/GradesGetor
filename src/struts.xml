@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <constant name="struts.ui.theme" value="simple" />
+    <constant name="struts.ui.templateDir" value="template" />
+    <constant name="struts.ui.templateSuffix" value="ftl" />
+        
+
+    <package name="default" namespace="/" extends="struts-default">
+        
+        <!-- 当用户请求找不到对应action时，由signin处理用户请求 -->
+        <default-action-ref name="signin" />
+        
+        <global-results>
+            <result name="error" type="redirectAction">signin</result>
+        </global-results>
+
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="error"/>
+        </global-exception-mappings>
+       
+        
+        <action name="signin">
+            <result>/signin.jsp</result>
+        </action>
+        
+        <action name="stu-grades" class="com.github.xylsh.action.GetGradesAction">
+            <result name="success">/stu-grades.jsp</result>
+            <result name="input">/signin.jsp</result>
+        </action>
+        
+    
+    </package>
+
+</struts>

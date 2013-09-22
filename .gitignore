@@ -1,0 +1,5 @@
+# 忽略.class文件
+*.class
+
+# 忽略build目录
+build/
