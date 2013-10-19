@@ -1,5 +1,7 @@
 # 忽略.class文件
 *.class
+.ant-targets-build.xml
 
 # 忽略build目录
 build/
+WebContent/WEB-INF/classes

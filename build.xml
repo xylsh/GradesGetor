@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf8"?>
+<project name="GradesGetor" default="compile" basedir=".">
+
+    <property name="src.dir" value="src" />
+    <property name="lib.dir" value="WebContent/WEB-INF/lib" />
+    <property name="build.dir" value="WebContent/WEB-INF/classes" />
+
+    <path id="project.classpath">
+        <pathelement location="${build.dir}" />
+        <fileset dir="${lib.dir}">
+            <include name="**/*.jar" />
+        </fileset>
+    </path>
+
+    <patternset id="meta.files">
+        <include name="src/*.xml" />
+    </patternset>
+
+    <target name="prepare" description="Sets up build structures">
+        <delete dir="${build.dir}" />
+        <mkdir dir="${build.dir}" />
+        <copy todir="${build.dir}">
+            <fileset dir="${src.dir}">
+                <include name="**/*.xml" />
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="compile" depends="prepare">
+        <javac srcdir="${src.dir}"
+            destdir="${build.dir}"
+            includeAntRuntime="false">
+            <classpath refid="project.classpath" />
+        </javac>
+        <jar destfile="GradesGetor.war"
+            basedir="WebContent"
+            includes="**/*.*">
+        </jar>
+    </target>
+
+</project>
